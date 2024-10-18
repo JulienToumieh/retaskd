@@ -34,6 +34,7 @@ import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity(), TaskComponent.OnDataPass {
     private lateinit var konfettiView: KonfettiView
+    private lateinit var mediaPlayer: MediaPlayer
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,6 +48,8 @@ class MainActivity : AppCompatActivity(), TaskComponent.OnDataPass {
         val taskInputContainer = findViewById<androidx.constraintlayout.widget.ConstraintLayout>(R.id.taskInputContainer)
         val newTaskInput = findViewById<EditText>(R.id.newTaskInput)
         val createTaskButton = findViewById<ImageButton>(R.id.createTaskButton)
+
+        mediaPlayer = MediaPlayer.create(this, R.raw.completion_sound)
 
         // Handle window insets to adjust layout for keyboard
         ViewCompat.setOnApplyWindowInsetsListener(mainLayout) { view, insets ->
@@ -73,18 +76,24 @@ class MainActivity : AppCompatActivity(), TaskComponent.OnDataPass {
             getSharedPreferences("app", MODE_PRIVATE).edit().putBoolean("firstRun", false).apply()
 
             val task1 = JSONObject().apply {
-                put("title", "Task 1")
+                put("title", "Click on the checkbox to complete task.")
                 put("completed", false)
             }
 
             val task2 = JSONObject().apply {
-                put("title", "Task 2")
+                put("title", "Click and hold on a task to delete.")
                 put("completed", true)
             }
+            val task3 = JSONObject().apply {
+                put("title", "Click on the 'Retaskd' text at the top to open the backup/restore popup.")
+                put("completed", false)
+            }
+
 
             val tasksArray = JSONArray().apply {
                 put(task1)
                 put(task2)
+                put(task3)
             }
 
             saveTasksToFile(this, tasksArray)
@@ -217,12 +226,9 @@ class MainActivity : AppCompatActivity(), TaskComponent.OnDataPass {
     }
 
     private fun playCompletionSound() {
-        val mediaPlayer = MediaPlayer.create(this, R.raw.completion_sound) // Add your sound file to res/raw
+        mediaPlayer = MediaPlayer.create(this, R.raw.completion_sound)
         mediaPlayer.start()
     }
-
-
-
 
     private val backupLauncher = registerForActivityResult(CreateDocument("todo/todo")) { uri: Uri? ->
         uri?.let {

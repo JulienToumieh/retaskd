@@ -39,7 +39,7 @@ class TaskComponent(private val activity: Activity, private val dataSet: JSONArr
                                    else viewHolder.taskData.setTextColor(Color.parseColor("#24171d"))
 
         viewHolder.taskCard.setOnClickListener {
-            //(activity as OnDataPass).toggleTask(position)
+            //viewHolder.taskData.isChecked = true
         }
         viewHolder.taskCard.setOnLongClickListener {
             (activity as OnDataPass).deleteTask(position)
@@ -58,6 +58,10 @@ class TaskComponent(private val activity: Activity, private val dataSet: JSONArr
             else if (isDarkTheme(activity)) viewHolder.taskData.setTextColor(Color.parseColor("#ffe3ff"))
                                        else viewHolder.taskData.setTextColor(Color.parseColor("#24171d"))
 
+        }
+        viewHolder.taskData.setOnLongClickListener {
+            (activity as OnDataPass).deleteTask(position)
+            true
         }
     }
     private fun isDarkTheme(context: Context): Boolean {
