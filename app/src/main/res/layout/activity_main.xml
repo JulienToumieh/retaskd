@@ -156,18 +156,19 @@
                     <TextView
                             android:text="Backup/Restore"
                             android:layout_width="wrap_content"
-                            android:textSize="25dp"
-                            android:layout_margin="20dp"
+                            android:textSize="26dp"
+                            android:layout_marginTop="12dp"
                             android:layout_height="wrap_content" android:id="@+id/textView2"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"
                             android:textStyle="bold"/>
                     <TextView
-                            android:text="Restoring a backup will override existing tasks."
+                            android:text="Restoring a backup will overwrite existing tasks."
                             android:textAlignment="center"
-                            android:layout_marginTop="6dp"
-                            android:layout_width="203dp"
-                            android:layout_height="35dp" android:id="@+id/textView3"
+                            android:textSize="14dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_width="223dp"
+                            android:layout_height="38dp" android:id="@+id/textView3"
                             app:layout_constraintTop_toBottomOf="@+id/textView2"
                             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"/>
                     <Space
