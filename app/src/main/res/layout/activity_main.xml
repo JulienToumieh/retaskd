@@ -37,11 +37,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/taskInputContainer"/>
 
-    <Switch
+    <com.google.android.material.materialswitch.MaterialSwitch
             android:id="@+id/autoResetSwitch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="6dp"
+            android:layout_marginRight="8dp"
             android:text="Auto Reset"
             android:textColor="?attr/colorSecondary"
             app:layout_constraintTop_toTopOf="parent"
@@ -52,7 +52,7 @@
             android:id="@+id/resetTasksButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
+            android:layout_marginRight="6dp"
             android:backgroundTint="#0000"
             android:padding="0dp"
             app:srcCompat="@drawable/baseline_sync_24"

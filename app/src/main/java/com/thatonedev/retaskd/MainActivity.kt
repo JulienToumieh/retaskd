@@ -20,6 +20,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.materialswitch.MaterialSwitch
 import com.thatonedev.retaskd.Components.TaskComponent
 import nl.dionsegijn.konfetti.core.Party
 import nl.dionsegijn.konfetti.core.Position
@@ -67,7 +68,7 @@ class MainActivity : AppCompatActivity(), TaskComponent.OnDataPass {
             insets
         }
 
-        findViewById<Switch>(R.id.autoResetSwitch).isChecked = getSharedPreferences("app", MODE_PRIVATE).getBoolean("autoReset", true)
+        findViewById<MaterialSwitch>(R.id.autoResetSwitch).isChecked = getSharedPreferences("app", MODE_PRIVATE).getBoolean("autoReset", true)
         if (getSharedPreferences("app", MODE_PRIVATE).getBoolean("autoReset", true)) {
             checkAndResetTasks()
         }
@@ -119,7 +120,7 @@ class MainActivity : AppCompatActivity(), TaskComponent.OnDataPass {
             refreshTasks()
         }
 
-        findViewById<Switch>(R.id.autoResetSwitch).setOnCheckedChangeListener { _, isChecked ->
+        findViewById<MaterialSwitch>(R.id.autoResetSwitch).setOnCheckedChangeListener { _, isChecked ->
             getSharedPreferences("app", MODE_PRIVATE).edit().putBoolean("autoReset", isChecked).apply()
             val currentDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
             saveLastResetDate(currentDate)
